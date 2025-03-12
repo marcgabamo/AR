@@ -3,36 +3,60 @@
 
 <head>
   <title>My first ar experience </title>
-	<script src="https://aframe.io/releases/1.3.0/aframe.min.js">
-	</script>
-	<script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
-
-	</script>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js">
+  </script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/3.4.5/aframe/build/aframe-ar.js">
+  </script>
 </head>
-
 
 <body style="margin : 0px; overflow: hidden;">
 
-	<a-scene 
+  <a-scene 
     embedded arjs="sourceType: webcam;"
     vr-mode-ui="enabled: false" 
     renderer="sortObjects: true; antialias: true; logarithmicDepthBuffer: true;"
     arjs="trackingMethod: best;
     detectionMode :'color_and_matrix' 
     changeMatrixMode: 'modelViewMatrix'; "
-	  smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
-    sourceWidth= "800" sourceHeight= "600"
-    displayWidth= "1280" displayHeight="720" >
+    smooth="true" smoothCount="5" smoothTolerance=".05" smoothThreshold="5" 
+    sourceWidth="800" sourceHeight="600"
+    displayWidth="1280" displayHeight="720">
 
-		<a-marker preset="kanji" size= "0.08">
+    <a-assets>
+      <img id="disk" src="./assets/images/disk.png">
+    </a-assets>
 
-			<a-box position='0 0 0' rotation='0 0 0' scale='1 1 1' color='#FD5D3B' material='opacity: 1;'></a-box>
-            <a-box position='0 0 0' rotation='45 0 0' scale='1.5 1.5 1.5' color='#FD5D3B' material='opacity: 0.5;'></a-box>
-		</a-marker>
+    <a-marker preset="kanji" size="0.8">
+      <a-image id="rotatingDisk" src="#disk" rotation="90 0 0" width="3" height="3"></a-image>
+    </a-marker>
 
-		<a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
 
-	</a-scene>
+  </a-scene>
+
+  <script>
+    // Access the rotating disk element
+    const rotatingDisk = document.getElementById('rotatingDisk');
+    
+    // Set the rotation speed (240 RPM -> 1440 degrees per second)
+    const rotationSpeed = 1440; // degrees per second
+    
+    // Function to continuously rotate the disk
+    function rotateDisk() {
+      // Get the current rotation of the disk
+      let rotation = rotatingDisk.getAttribute('rotation');
+      
+      // Update the rotation on the Y-axis based on the speed
+      rotation.y += rotationSpeed * 0.01; // 0.01 is used to slow down the speed
+      rotatingDisk.setAttribute('rotation', rotation);
+      
+      // Request the next animation frame to keep rotating
+      requestAnimationFrame(rotateDisk);
+    }
+    
+    // Start the rotation
+    rotateDisk();
+  </script>
 
 </body>
 
