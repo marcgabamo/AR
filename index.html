@@ -25,8 +25,10 @@
     </a-assets>
 
     <a-marker preset="kanji" size="0.8">
-      <!-- Add the rotating disk (image) -->
-      <a-image id="rotatingDisk" src="#disk" rotation="0 0 0" width="3" height="3"></a-image>
+      <!-- Fix rotation: Set X to -90 to lay flat -->
+      <a-image id="rotatingDisk" src="#disk" rotation="0 0 0" width="3" height="3" side="double"
+      
+      ></a-image>
     </a-marker>
 
     <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
@@ -45,8 +47,9 @@
       // Get the current rotation of the disk
       let rotation = rotatingDisk.getAttribute('rotation');
       
-      // Update the rotation on the Y-axis based on the speed
-      rotation.y += rotationSpeed * 0.01; // 0.01 is used to slow down the speed
+      // Update the rotation on the Z-axis based on the speed (spinning effect)
+      rotation.x = 90
+      rotation.z += rotationSpeed * 0.01; // 0.01 is used to slow down the speed
       rotatingDisk.setAttribute('rotation', rotation);
       
       // Request the next animation frame to keep rotating
