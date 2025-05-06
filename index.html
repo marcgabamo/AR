@@ -21,10 +21,10 @@
     displayWidth="1280" displayHeight="720">
 
     <a-assets>
-      <img id="disk" src="./assets/images/disk.png">
+      <img id="disk" src="./assets/images/dansa.png">
     </a-assets>
 
-    <a-marker preset="kanji" size="0.8">
+    <a-marker type="pattern" url="assets/images/pattern-Le_Danse.patt" size="0.8">
       <!-- Fix rotation: Set X to -90 to lay flat -->
       <a-image id="rotatingDisk" src="#disk" rotation="0 0 0" width="3" height="3" side="double"
       
@@ -40,7 +40,7 @@
     const rotatingDisk = document.getElementById('rotatingDisk');
     
     // Set the rotation speed (240 RPM -> 1440 degrees per second)
-    const rotationSpeed = 1440; // degrees per second
+    const rotationSpeed = 500; // degrees per second
     
     // Function to continuously rotate the disk
     function rotateDisk() {
