@@ -49,15 +49,17 @@
       
       // Update the rotation on the Z-axis based on the speed (spinning effect)
       rotation.x = 90
-      rotation.z += rotationSpeed * 0.01; // 0.01 is used to slow down the speed
+      //rotation.z += rotationSpeed * 0.01; // 0.01 is used to slow down the speed
+      rotation.z += 60
       rotatingDisk.setAttribute('rotation', rotation);
       
       // Request the next animation frame to keep rotating
-      requestAnimationFrame(rotateDisk);
+      //requestAnimationFrame(rotateDisk);
     }
     
     // Start the rotation
     rotateDisk();
+    setInterval(rotateDisk, 100)
   </script>
 
 </body>
